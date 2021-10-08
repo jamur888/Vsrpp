@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 class App extends Component {
     state = {
-        data: []
+        data: [],
+        id: value
     };
     
     componentDidMount() {
@@ -12,7 +13,8 @@ class App extends Component {
             .then(result => result.json())
             .then(result => {
                 this.setState({
-                    data: result
+                    data: result,
+                    id: value
                 })
             });
     }
@@ -20,9 +22,9 @@ class App extends Component {
     render() {
         const { data } = this.state;
 
-        const result = data.map((entry, index) => {
-            console.log(entry);
-            return <li key={index}>{entry}</li>;
+        const result = data.map((entry, index, id) => {
+            console.log(result);
+            return <li id={id} key={index}>{entry}</li>;
         });
 
         return <div className="container"><ul>{result}</ul></div>;
