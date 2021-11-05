@@ -35,7 +35,7 @@ class Form extends Component {
     onFormSubmit = (event) => {
         event.preventDefault();
         this.props.handleSubmit(this.state);
-        //this.setState(this.initialState);
+
     }
 
     render() {
@@ -48,21 +48,21 @@ class Form extends Component {
                 >
                     Add user
                 </button>
-                <label for="firstname">FirstName</label>
+                <label f="firstname">FirstName</label>
                 <input 
                     type="text" 
                     name="firstname" 
                     id="firstname"
                     value={firstname} 
                     onChange={this.handleChange} />
-                <label for="lastname">Lastname</label>
+                <label f="lastname">Lastname</label>
                 <input 
                     type="text" 
                     name="lastname" 
                     id="lastname"
                     value={lastname} 
                     onChange={this.handleChange} />
-              <label for="email">Email</label>
+              <label f="email">Email</label>
                 <input 
                     type="text" 
                     name="email" 
