@@ -8,7 +8,7 @@ const Router = (userName) => {
   return(
   <div>
     {
-      userName == "" &&
+      userName === "" &&
       <Redirect to="" />
     }
       <Switch>

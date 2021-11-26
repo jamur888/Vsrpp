@@ -30,13 +30,20 @@ class FirstPage extends Component {
     }
 
     OnClikUp = () => {
-        
-  
+       let isExist = false;
+       let userEmail = "";
        PlayerAPI.all().forEach(p => {
-        if(p.email==this.state.email && p.password == this.state.password){
-            this.props.history.push("/App")      
+        if(p.email === this.state.email && p.password === this.state.password){
+            isExist = true;
+            userEmail = p.email;
          }      
       })
+      console.log(this.props.history);
+      if(isExist) 
+      {
+          this.props.loginUser(userEmail);
+          this.props.history.push("/App");
+        }
    
   }
 
@@ -50,7 +57,7 @@ class FirstPage extends Component {
           
             <form className='welcome_form' onSubmit={this.onFormSubmit}>
              {
-                this.props.userName === "" && this.props.history.location.pathname !== "/password" &&
+                this.props.userName === "" && this.props.history.location.pathname !== "/" &&
                 <Redirect to="/" />
             }
             
