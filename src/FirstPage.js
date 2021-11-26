@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import PlayerAPI from './Adm';
+import {Redirect} from "react-router-dom";
+import { connect } from 'react-redux';
+import userLogin from './store/ActionCreators/userLogin';
+import updateUsers from './store/ActionCreators/updateUsers';
 
 class FirstPage extends Component {
 
@@ -40,11 +44,16 @@ class FirstPage extends Component {
     
 
     render() {
-        const {  email, password } = this.state; 
+        const { email, password } = this.state; 
 
         return (
+          
             <form className='welcome_form' onSubmit={this.onFormSubmit}>
-           
+             {
+                this.props.userName === "" && this.props.history.location.pathname !== "/password" &&
+                <Redirect to="/" />
+            }
+            
                <label f="email">Email</label>
                 <input 
                     type="text" 
@@ -72,5 +81,19 @@ class FirstPage extends Component {
         );
     }
 }
+const mapStateToProps = state => {
+    return{
+      userName: state.userName,
+      users: state.users
+    }
+  }
+  
+  const mapDispatchToProps = dispatch => {
+    return{
+      loginUser: (userName) => dispatch(userLogin(userName)),
+      updateUsers: (users) => dispatch(updateUsers(users))
+    }
+  }
 
-export default FirstPage;
+
+export default connect(mapStateToProps, mapDispatchToProps)(FirstPage);
